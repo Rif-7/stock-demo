@@ -2,6 +2,9 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background-color: #daf5ff;
+
   font-family: "Roboto Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,9 +31,71 @@ code {
 
 .view-all {
   font-family: "Roboto Mono";
-  font-size: 18px;
+  font-size: 22px;
   padding: 4px 8px;
   border: 3px solid white;
-  border-radius: 8px;
-  background-color: #daf5ff;
+  border-radius: 4px;
+  background-color: #44ffd2;
+  cursor: pointer;
+  transition: 250ms;
+}
+
+
+.form-header {
+  font-size: 32px;
+  background-color: #616163;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+  font-size: 22px;
+}
+
+.input-field  input {
+  width: 320px;
+  height: 30px;
+  border-radius: 6px;
+  font-size: inherit;
+  outline: none;
+  border: 3px solid #616163;
+}
+
+.submit-btn {
+  width: 200px;
+  padding: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 22px;
+  margin-bottom: 8px;
+  background-color: #44ffd2;
+  border-radius: 4px;
+  border: 3px solid white;
+  transition: 250ms;
+  overflow: hidden;
+}
+
+.submit-btn:hover, .view-all:hover {
+  transform: translateX(5px);
+  background-color: #ffbfa0;
+}
+
+form > div {
+  padding-left: 8px;
+}
+
+form > button {
+  margin-left: 8px;
+}
+
+.input-field > p {
+  margin: 0;
+}
+
+.error-field {
+  color: red;
+  font-size: 18px
 }
