@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Mono:wght@500&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Roboto Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +10,27 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.navbar {
+  font-family: "Bangers", cursive;
+  width: 100vw;
+  padding: 8px 18px;
+  font-size: 44px;
+  box-sizing: border-box;
+  color: black;
+  background-color: #87f6ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.view-all {
+  font-family: "Roboto Mono";
+  font-size: 18px;
+  padding: 4px 8px;
+  border: 3px solid white;
+  border-radius: 8px;
+  background-color: #daf5ff;
 }
