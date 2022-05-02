@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductByName } from "../FirebaseFunctions";
+import { getProductByName, takeOrder } from "../FirebaseFunctions";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../App";
 import { useForm } from "react-hook-form";
+import ReactLoading from "react-loading";
 
 const ProductPage = () => {
   const { productName } = useParams();
   const [stockValue, setStockValue] = useState("Loading");
+  const [productRef, setProductRef] = useState(null);
 
   useEffect(() => {
     fetchStockAndSubscribeToStock();
@@ -16,6 +18,7 @@ const ProductPage = () => {
   const fetchStockAndSubscribeToStock = async () => {
     const { id, stock } = await getProductByName(productName);
     setStockValue(Number(stock));
+    setProductRef(id);
     return subscribeToStockUpdates(id);
   };
 
@@ -24,6 +27,15 @@ const ProductPage = () => {
       const newStockValue = doc.data().stock;
       setStockValue(Number(newStockValue));
     });
+  };
+
+  const onTakeOrder = async (data) => {
+    const { orderAmount } = data;
+    if (!productRef) {
+      console.log("Product Ref Id not found");
+      return;
+    }
+    return await takeOrder(productRef, orderAmount);
   };
 
   return (
@@ -35,6 +47,7 @@ const ProductPage = () => {
       <AddNewStockForm />
       <TakeOrderForm
         maxOrderAmount={stockValue === "loading" ? 0 : stockValue}
+        onTakeOrder={onTakeOrder}
       />
     </div>
   );
@@ -78,7 +91,7 @@ const AddNewStockForm = () => {
   );
 };
 
-const TakeOrderForm = ({ maxOrderAmount }) => {
+const TakeOrderForm = ({ maxOrderAmount, onTakeOrder }) => {
   const {
     register,
     formState: { errors },
@@ -86,9 +99,13 @@ const TakeOrderForm = ({ maxOrderAmount }) => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const [formStatus, setFormStatus] = useState("idle");
+
+  const onSubmit = async (data) => {
+    setFormStatus("loading");
+    await onTakeOrder(data);
     reset();
+    setFormStatus("idle");
   };
 
   return (
@@ -115,6 +132,14 @@ const TakeOrderForm = ({ maxOrderAmount }) => {
       </div>
       <div className="button-div">
         <button className="submit-btn">Take Order</button>
+        {formStatus === "loading" ? (
+          <ReactLoading
+            type="spin"
+            color="#ffbfa0"
+            height="40px"
+            width="40px"
+          />
+        ) : null}
       </div>
     </form>
   );

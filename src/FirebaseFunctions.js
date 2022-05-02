@@ -6,6 +6,9 @@ import {
   where,
   limit,
   getDocs,
+  doc,
+  getDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const addProductToStore = async (productName, stock) => {
@@ -38,4 +41,18 @@ const getProductByName = async (productName) => {
   return { ...productData, id: productQueryResult.docs[0].id };
 };
 
-export { addProductToStore, getProductByName };
+const takeOrder = async (productRefId, amount) => {
+  const productRef = doc(db, "products", productRefId);
+  const product = await getDoc(productRef);
+  const productData = product.data();
+  const newStockAmount = Number(productData.stock) - Number(amount);
+  if (newStockAmount >= 0) {
+    await updateDoc(productRef, {
+      stock: newStockAmount,
+    });
+    return "success";
+  }
+  return "error/insufficient-balance";
+};
+
+export { addProductToStore, getProductByName, takeOrder };
