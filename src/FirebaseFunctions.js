@@ -55,4 +55,15 @@ const takeOrder = async (productRefId, amount) => {
   return "error/insufficient-balance";
 };
 
-export { addProductToStore, getProductByName, takeOrder };
+const addStock = async (productRefId, amount) => {
+  const productRef = doc(db, "products", productRefId);
+  const product = await getDoc(productRef);
+  const productData = product.data();
+  const newStockAmount = Number(productData.stock) + Number(amount);
+  await updateDoc(productRef, {
+    stock: newStockAmount,
+  });
+  return "success";
+};
+
+export { addProductToStore, getProductByName, takeOrder, addStock };
