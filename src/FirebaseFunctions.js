@@ -11,7 +11,7 @@ import {
 const addProductToStore = async (productName, stock) => {
   productName = productName.toLowerCase().trim();
   stock = Number(stock);
-  if (!productName || stock < 1) {
+  if (!productName || stock < 1 || productName === "all") {
     return "error/invalid-data";
   }
 
@@ -35,7 +35,6 @@ const getProductByName = async (productName) => {
   );
   const productQueryResult = await getDocs(productRef);
   const productData = productQueryResult.docs[0]?.data();
-  console.log(productData);
   return productData;
 };
 

@@ -29,6 +29,11 @@ code {
   gap: 6px;
 }
 
+.navbar a {
+  text-decoration: none;
+  color: black;
+}
+
 .view-all {
   font-family: "Roboto Mono";
   font-size: 22px;
@@ -40,7 +45,6 @@ code {
   transition: 250ms;
   text-align: center;
 }
-
 
 .form-header {
   font-size: 32px;

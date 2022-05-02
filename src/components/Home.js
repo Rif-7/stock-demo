@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { addProductToStore } from "../FirebaseFunctions";
+import { addProductToStore, getProductByName } from "../FirebaseFunctions";
 import ReactLoading from "react-loading";
+import { Navigate } from "react-router-dom";
 
 const Home = () => {
-  const getProduct = (data) => {
-    console.log(data);
+  const getProduct = async (data) => {
+    const { productName } = data;
+    return await getProductByName(productName);
   };
 
   const addNewProduct = async (data) => {
@@ -103,16 +105,44 @@ const GetProductForm = ({ getProduct }) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
+  const [formStatus, setFormStatus] = useState("idle");
+  const [customError, setCustomError] = useState(null);
+
+  const onSubmit = async (data) => {
+    setCustomError(null);
+    setFormStatus("loading");
+    const result = await getProduct(data);
+    if (!result) {
+      setCustomError("Product Not Found");
+      setFormStatus("idle");
+    }
+    setFormStatus("redirect");
+  };
+
+  // if any error exists in the input fields set the custom error to null
+  if (errors[Object.keys(errors)[0]]?.message) {
+    if (customError !== null) {
+      setCustomError(null);
+    }
+  }
+
+  const productName = watch("productName");
+  if (formStatus === "redirect") {
+    return <Navigate replace to={`/products/${productName}`} />;
+  }
+
   return (
-    <form className="view-product" onSubmit={handleSubmit(getProduct)}>
+    <form className="view-product" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">View Product</div>
+      {customError ? <p className="error-field">{customError}</p> : null}
       <div className="input-field">
         <label htmlFor="product-query">Product: </label>
         <input
           type="text"
-          {...register("productQuery", {
+          {...register("productName", {
             required: "Product Name is required",
           })}
         ></input>
@@ -120,6 +150,14 @@ const GetProductForm = ({ getProduct }) => {
       </div>
       <div className="button-div">
         <button className="submit-btn">Get</button>
+        {formStatus === "loading" ? (
+          <ReactLoading
+            type="spin"
+            color="#ffbfa0"
+            height="40px"
+            width="40px"
+          />
+        ) : null}
       </div>
     </form>
   );
