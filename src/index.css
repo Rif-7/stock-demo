@@ -46,7 +46,7 @@ code {
   text-align: center;
 }
 
-.form-header {
+.form-header{
   font-size: 32px;
   background-color: #616163;
   color: white;
@@ -113,3 +113,28 @@ form p {
   display: flex;
   gap: 8px;
 }
+
+.product-page > div {
+  padding-left: 8px;
+} 
+
+.product-info {
+  font-size: 32px;
+  color: black;
+  background-color: #ffbfa0;
+  text-transform: capitalize;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.stock-info {
+  background-color: #87f6ff;
+  color: black;
+  padding: 0px 4px;
+  border-radius: 4px;
+  font-size: 28px;
+}
+
+
+

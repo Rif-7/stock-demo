@@ -118,6 +118,7 @@ const GetProductForm = ({ getProduct }) => {
     if (!result) {
       setCustomError("Product Not Found");
       setFormStatus("idle");
+      return;
     }
     setFormStatus("redirect");
   };
