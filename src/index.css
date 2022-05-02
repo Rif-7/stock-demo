@@ -38,6 +38,7 @@ code {
   background-color: #44ffd2;
   cursor: pointer;
   transition: 250ms;
+  text-align: center;
 }
 
 
@@ -70,7 +71,6 @@ code {
   box-sizing: border-box;
   font-family: inherit;
   font-size: 22px;
-  margin-bottom: 8px;
   background-color: #44ffd2;
   border-radius: 4px;
   border: 3px solid white;
@@ -91,11 +91,21 @@ form > button {
   margin-left: 8px;
 }
 
-.input-field > p {
+form > .button-div {
+  margin-bottom: 8px;
+}
+
+form p {
   margin: 0;
 }
 
 .error-field {
   color: red;
-  font-size: 18px
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+.button-div {
+  display: flex;
+  gap: 8px;
 }

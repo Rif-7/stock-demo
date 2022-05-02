@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <span className="header">Stock Viewer</span>
-      <span className="view-all">View All Products</span>
+      <span className="view-all">All Products</span>
     </nav>
   );
 };
