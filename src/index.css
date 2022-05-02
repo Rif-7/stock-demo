@@ -136,5 +136,44 @@ form p {
   font-size: 28px;
 }
 
+.compact-view {
+  background-color: #3882f6;
+  color: white;
+  padding-left: 8px;
+  font-size: 22px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 50px;
+  align-items: center;
+}
+
+.compact-stock-info {
+  height: 100%;
+  display: grid;
+  align-items: center;
+  padding-left: 8px;
+  background-color: #616163;
+}
+
+.compact-view a {
+  color: white;
+}
+
+.compact-product-name {
+  text-transform: capitalize;
+}
+
+.indicator {
+  height: 50px;
+  font-size: 34px;
+  text-align: center;
+}
+
+.all-products {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
 

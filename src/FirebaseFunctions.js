@@ -9,6 +9,7 @@ import {
   doc,
   getDoc,
   updateDoc,
+  orderBy,
 } from "firebase/firestore";
 
 const addProductToStore = async (productName, stock) => {
@@ -38,6 +39,9 @@ const getProductByName = async (productName) => {
   );
   const productQueryResult = await getDocs(productRef);
   const productData = productQueryResult.docs[0]?.data();
+  if (!productData) {
+    return false;
+  }
   return { ...productData, id: productQueryResult.docs[0].id };
 };
 
@@ -66,4 +70,19 @@ const addStock = async (productRefId, amount) => {
   return "success";
 };
 
-export { addProductToStore, getProductByName, takeOrder, addStock };
+const getAllProducts = async () => {
+  const productQuery = query(
+    collection(db, "products"),
+    orderBy("productName"),
+    limit(50)
+  );
+  return await getDocs(productQuery);
+};
+
+export {
+  addProductToStore,
+  getProductByName,
+  takeOrder,
+  addStock,
+  getAllProducts,
+};

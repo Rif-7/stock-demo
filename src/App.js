@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import ProductPage from "./components/ProductPage";
+import AllProducts from "./components/AllProducts";
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -25,6 +26,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="all" element={<AllProducts />} />
         <Route path="products/:productName" element={<ProductPage />} />
       </Routes>
     </BrowserRouter>
