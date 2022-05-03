@@ -7,9 +7,9 @@ const Navbar = () => {
       <span className="header">
         <Link to="/stock-demo">Stock Viewer</Link>
       </span>
-      <span className="view-all">
+      <button className="view-all submit-btn">
         <Link to="stock-demo/all">All Products</Link>
-      </span>
+      </button>
     </nav>
   );
 };

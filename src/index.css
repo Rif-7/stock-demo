@@ -34,7 +34,7 @@ code {
   color: black;
 }
 
-.view-all {
+/* .view-all {
   font-family: "Roboto Mono";
   font-size: 22px;
   padding: 4px 8px;
@@ -44,7 +44,7 @@ code {
   cursor: pointer;
   transition: 250ms;
   text-align: center;
-}
+} */
 
 .form-header{
   font-size: 32px;
@@ -73,7 +73,8 @@ code {
   width: 200px;
   padding: 4px;
   box-sizing: border-box;
-  font-family: inherit;
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
   font-size: 22px;
   background-color: #44ffd2;
   border-radius: 4px;
@@ -82,9 +83,14 @@ code {
   overflow: hidden;
 }
 
-.submit-btn:hover, .view-all:hover {
+.submit-btn:hover {
   transform: translateX(5px);
   background-color: #ffbfa0;
+}
+
+.submit-btn:active {
+  background-color: #44ffd2;
+  transform: translateX(0px);
 }
 
 form > div {
@@ -175,5 +181,7 @@ form p {
   flex-direction: column;
   gap: 4px;
 }
+
+
 
 
