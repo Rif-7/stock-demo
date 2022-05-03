@@ -132,7 +132,7 @@ const GetProductForm = ({ getProduct }) => {
 
   const productName = watch("productName");
   if (formStatus === "redirect") {
-    return <Navigate replace to={`/products/${productName}`} />;
+    return <Navigate replace to={`/stock-demo/products/${productName}`} />;
   }
 
   return (

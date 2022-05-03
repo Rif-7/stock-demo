@@ -25,9 +25,12 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="all" element={<AllProducts />} />
-        <Route path="products/:productName" element={<ProductPage />} />
+        <Route path="stock-demo" element={<Home />}></Route>
+        <Route path="stock-demo/all" element={<AllProducts />} />
+        <Route
+          path="stock-demo/products/:productName"
+          element={<ProductPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -44,7 +44,7 @@ const CompactProductView = ({ productName, stock }) => {
   return (
     <div className="compact-view">
       <div className="compact-product-name">
-        <Link to={`/products/${productName}`}>{productName}</Link>
+        <Link to={`/stock-demo/products/${productName}`}>{productName}</Link>
       </div>
       <div className="compact-stock-info">Stock: {stock}</div>
     </div>
